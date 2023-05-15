@@ -1,3 +1,5 @@
+import { db } from "./db";
+
 export const search = () => {
   const search = document.querySelector(".search-block");
   const searchInput = search.querySelector(".search-block>input");
@@ -36,24 +38,18 @@ export const search = () => {
     });
   };
 
-  const getData = (val) => {
-    fetch("/db/db.json")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        let arr = data.filter((item) => {
-          return item.name.toLowerCase().includes(val);
-        });
-        localStorage.setItem("goods", JSON.stringify(arr));
-        window.location.pathname !== "/goods.html"
-          ? (window.location.href = "/goods.html")
-          : renderGoods(arr);
-      });
+  const getData = (data,val) => {
+    let arr = data.filter((item) => {
+      return item.name.toLowerCase().includes(val);
+    });
+    localStorage.setItem("goods", JSON.stringify(arr));
+    window.location.pathname !== "wildberris/goods.html"
+      ? (window.location.href = "wildberris/goods.html")
+      : renderGoods(arr);
   };
 
   searchButton.addEventListener("click", () => {
     let searchVal = searchInput.value;
-    getData(searchVal);
+    getData(db(),searchVal);
   });
 };
