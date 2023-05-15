@@ -41,8 +41,8 @@ export const getGoods = () => {
       })
     : data;
   localStorage.setItem("goods", JSON.stringify(arr));
-  window.location.pathname !== "wildberris/goods.html"
-    ? (window.location.href = "wildberris/goods.html")
+  window.location.pathname !== "/wildberris/goods.html"
+    ? (window.location.href = "/wildberris/goods.html")
     : renderGoods(arr);
   };
 
@@ -58,7 +58,7 @@ export const getGoods = () => {
 
   if (
     localStorage.getItem("goods") &&
-    window.location.pathname === "wildberris/goods.html"
+    window.location.pathname === "/wildberris/goods.html"
   ) {
     renderGoods(JSON.parse(localStorage.getItem("goods")));
   }

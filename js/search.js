@@ -43,8 +43,8 @@ export const search = () => {
       return item.name.toLowerCase().includes(val);
     });
     localStorage.setItem("goods", JSON.stringify(arr));
-    window.location.pathname !== "wildberris/goods.html"
-      ? (window.location.href = "wildberris/goods.html")
+    window.location.pathname !== "/wildberris/goods.html"
+      ? (window.location.href = "/wildberris/goods.html")
       : renderGoods(arr);
   };
 
