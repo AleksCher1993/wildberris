@@ -38,6 +38,15 @@ export const search = () => {
     });
   };
 
+  // const getData = (data,val) => {
+  //   let arr = data.filter((item) => {
+  //     return item.name.toLowerCase().includes(val);
+  //   });
+  //   localStorage.setItem("goods", JSON.stringify(arr));
+  //   window.location.pathname !== "/goods.html"
+  //     ? (window.location.href = "/goods.html")
+  //     : renderGoods(arr);
+  // };
   const getData = (data,val) => {
     let arr = data.filter((item) => {
       return item.name.toLowerCase().includes(val);
@@ -47,7 +56,6 @@ export const search = () => {
       ? (window.location.href = "/wildberris/goods.html")
       : renderGoods(arr);
   };
-
   searchButton.addEventListener("click", () => {
     let searchVal = searchInput.value;
     getData(db(),searchVal);

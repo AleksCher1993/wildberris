@@ -2,7 +2,7 @@ import { db } from "./db.js";
 
 export const getGoods = () => {
   const navLinks = document.querySelectorAll(".navigation-item>a");
-  const more = document.querySelector(".more");
+  const more = document.querySelectorAll(".more");
 
   const renderGoods = (data) => {
     const longGoodsList = document.querySelector(".long-goods-list");
@@ -34,6 +34,17 @@ export const getGoods = () => {
     });
   };
 
+  // const getData = (data,key, value) => {
+  //   let arr = key
+  //   ? data.filter((item) => {
+  //       return item[key] === value;
+  //     })
+  //   : data;
+  // localStorage.setItem("goods", JSON.stringify(arr));
+  // window.location.pathname !== "/goods.html"
+  //   ? (window.location.href = "/goods.html")
+  //   : renderGoods(arr);
+  // };
   const getData = (data,key, value) => {
     let arr = key
     ? data.filter((item) => {
@@ -45,7 +56,6 @@ export const getGoods = () => {
     ? (window.location.href = "/wildberris/goods.html")
     : renderGoods(arr);
   };
-
   navLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
@@ -56,6 +66,12 @@ export const getGoods = () => {
     });
   });
 
+  // if (
+  //   localStorage.getItem("goods") &&
+  //   window.location.pathname === "/goods.html"
+  // ) {
+  //   renderGoods(JSON.parse(localStorage.getItem("goods")));
+  // }
   if (
     localStorage.getItem("goods") &&
     window.location.pathname === "/wildberris/goods.html"
@@ -63,10 +79,13 @@ export const getGoods = () => {
     renderGoods(JSON.parse(localStorage.getItem("goods")));
   }
 
-  if (more) {
-    more.addEventListener("click", (event) => {
-      event.preventDefault();
-      getData(db());
-    });
-  }
+   if (more) {
+    more.forEach(item=>{
+
+      item.addEventListener("click", (event) => {
+        event.preventDefault();
+        getData(db());
+      });
+    })
+   }
 };

@@ -8,6 +8,8 @@ export const cart = () => {
   const inputName = modalForm.querySelector("input[name=nameCustomer]");
   const inputPhone = modalForm.querySelector("input[name=phoneCustomer]");
   const cardTableTotal = cartPopup.querySelector(".card-table__total");
+  const shortgoodslist = document.querySelector('.short-goods')
+  const itemsList=document.querySelectorAll('.goods-card-other')
   // ------------------------
 
   function addToCard(id) {
@@ -160,5 +162,24 @@ export const cart = () => {
         addToCard(id);
       }
     });
+  }
+  if (shortgoodslist) {
+    shortgoodslist.addEventListener("click", (event) => {
+      let t = event.target;
+      if (t.closest(".add-to-cart")) {
+        let btn = t.closest(".add-to-cart");
+        let id = btn.dataset.id;
+
+        addToCard(id);
+      }
+    });
+  }
+  if (itemsList) {
+    itemsList.forEach(item=>{
+      item.addEventListener('click',(e)=>{
+        let id=item.dataset.id
+        addToCard(id);
+      })
+    })
   }
 };
